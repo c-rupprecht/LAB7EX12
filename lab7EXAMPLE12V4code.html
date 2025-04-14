@@ -1,0 +1,67 @@
+<html>
+
+<head>
+<meta charset="utf-8" />
+<title>Mapbox Example 12- Denver Tree</title>
+
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+<link href="https://api.mapbox.com/mapbox-gl-js/v3.10.0/mapbox-gl.css" rel="stylesheet">
+<script src="https://api.mapbox.com/mapbox-gl-js/v3.10.0/mapbox-gl.js"></script>
+
+<style>
+    body { margin: 0; padding: 0; }
+    #map { position: absolute; top: 0; bottom: 0; width: 100%; };
+</style>
+
+</head>
+
+<body>
+<div id="map"></div>
+
+<script>
+
+    //Put your mapbox access token here
+    mapboxgl.accessToken = 'pk.eyJ1IjoiY2hhcmxpZTVzIiwiYSI6ImNtN3c3am9nYzAybG0ydHB5eWVnbXdvZXYifQ.sWRSUYIwfV2RnJ_7lyPtyQ';  
+
+        // Load a new map in the 'map' HTML div
+        var map = new mapboxgl.Map({
+            container: 'map', // container id
+            style: 'mapbox://styles/charlie5s/cm9d67kra009q01rc8q1pb1ii', // Put your mapbox style ID here
+            center: [-104.951046, 39.732470], // starting position [lng, lat]
+            zoom: 12 // starting zoom
+        });
+
+
+        // When loading the map
+        map.on('load', function() {
+
+
+            // Add a TREE POINT layer to the map 
+            map.addLayer({
+                'id':'denver_tree_point',
+                'type':'circle',
+                'source':{
+                    type:'vector',
+                    url:'mapbox://charlie5s.3wz02coi' // After "mapbox://" paste your Mapbox tileset ID
+                },
+                'source-layer':'denver_tree_top_10_genus-48xeds', // name of tilesets
+                'layout':{
+                    'visibility': 'visible'
+                },
+                'paint': {
+                    'circle-color':'#86b049',
+                    'circle-opacity':1,
+                    'circle-stroke-width':0.5,
+                    'circle-stroke-color':'white',          //points on the graph
+                    'circle-stroke-opacity':0.5,
+                    'circle-radius':2
+                }
+            });
+            
+
+        })
+
+</script>
+
+</body>
+</html>
